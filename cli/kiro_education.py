@@ -16,7 +16,7 @@ from rich.table import Table
 # Ajouter le répertoire parent au path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from core.educational_orchestrator_v31 import create_educational_orchestrator
+from core.educational_orchestrator_v32 import create_educational_orchestrator
 from archon.mock_educational_client import MockEducationalArchonClient
 from config.archon_config import get_dashboard_url
 
