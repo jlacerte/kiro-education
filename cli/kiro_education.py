@@ -89,7 +89,7 @@ def start_lesson(
 ):
     """[EDU] [DEPRECATED] Ancienne méthode - Utilisez 'go' à la place"""
     
-    console.print("⚠️ [yellow]DEPRECATED: Utilisez 'python kiro_education.py go \"Lesson-001 debugging\"' à la place[/yellow]")
+    console.print("[!] [yellow]DEPRECATED: Utilisez 'python kiro_education.py go \"Lesson-001 debugging\"' à la place[/yellow]")
     
     # Créer l'orchestrateur legacy si nécessaire
     global orchestrator
@@ -251,12 +251,12 @@ def session_status(
     ))
     
     # Simulation du statut
-    console.print("🔍 Récupération des informations depuis Archon...")
+    console.print("[SEARCH] Récupération des informations depuis Archon...")
     
     # Dans la vraie version, on interrogerait Archon
     console.print(f"[LIST] Projet: Leçon 002 - Sécurité")
     console.print(f"[STATS] Progression: 100% (5/5 tâches)")
-    console.print(f"📄 Documents: 8 artefacts")
+    console.print(f"[DOC] Documents: 8 artefacts")
     console.print(f"[EDU] Note finale: 75.0/100")
     console.print(f"[LINK] Dashboard: {get_dashboard_url(project_id)}")
 
@@ -271,7 +271,7 @@ def resume_session(
         style="bold yellow"
     ))
     
-    console.print("⚠️ Fonctionnalité en développement")
+    console.print("[!] Fonctionnalité en développement")
     console.print("[TIP] Pour le moment, utilisez 'start-lesson' pour créer une nouvelle session")
 
 @app.command()
@@ -290,9 +290,9 @@ def export_session(
     if not output:
         output = f"session_{project_id}.{format}"
     
-    console.print(f"📄 Format: {format}")
+    console.print(f"[DOC] Format: {format}")
     console.print(f"📁 Fichier: {output}")
-    console.print("⚠️ Fonctionnalité en développement")
+    console.print("[!] Fonctionnalité en développement")
 
 @app.command()
 def health():
@@ -317,13 +317,13 @@ def health():
     table.add_column("Status", style="green")
     
     for component, status in checks:
-        status_icon = "[OK] OK" if status else "⚠️ Mock"
+        status_icon = "[OK] OK" if status else "[!] Mock"
         table.add_row(component, status_icon)
     
     console.print(table)
     
     console.print(f"\n[TIP] Système prêt pour les sessions éducatives !")
-    console.print(f"⚠️ Archon en mode Mock - configurez le vrai serveur pour la production")
+    console.print(f"[!] Archon en mode Mock - configurez le vrai serveur pour la production")
 
 @app.command()
 def version():
@@ -367,7 +367,7 @@ def _display_session_summary(session):
     tasks_table.add_column("Durée", style="yellow")
     
     for i, task in enumerate(session.tasks):
-        status_icon = "[OK]" if task.status.value == "done" else "❌" if task.status.value == "review" else "[SYNC]"
+        status_icon = "[OK]" if task.status.value == "done" else "[X]" if task.status.value == "review" else "[SYNC]"
         duration = f"{task.duration_seconds:.1f}s" if task.duration_seconds > 0 else "-"
         tasks_table.add_row(str(i+1), task.title, f"{status_icon} {task.status.value}", duration)
     
